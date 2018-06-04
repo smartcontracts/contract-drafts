@@ -11,7 +11,8 @@ import "./Ownable.sol";
  * the transfer within some period of time (backupCancelPeriod, also specified
  * by the owner), then the funds are transferred and the bond refunded. If the
  * owner does cancel, then the bond is added to the contract's balance and not
- * refunded. 
+ * refunded. This requires that the owner check if a transfer has been 
+ * initiated at least once per backupCancelPeriod.
  */
 contract BackupAddressWallet is Ownable {
     address public backup;
