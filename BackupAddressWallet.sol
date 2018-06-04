@@ -1,7 +1,18 @@
-import "./Ownable.sol";
-
 pragma solidity ^0.4.0;
 
+import "./Ownable.sol";
+
+/**
+ * @title BackupAddressWallet
+ * @dev BackupAddressWallet is basically a simple wallet that makes it possible
+ * to transfer funds to a backup address if the owner ever loses their keys.
+ * The basic mechanism here is that some user puts up a bond (bondAmount,
+ * specified by the owner) to initiate a transfer. If the owner doesn't cancel
+ * the transfer within some period of time (backupCancelPeriod, also specified
+ * by the owner), then the funds are transferred and the bond refunded. If the
+ * owner does cancel, then the bond is added to the contract's balance and not
+ * refunded. 
+ */
 contract BackupAddressWallet is Ownable {
     address public backup;
     address public transferInitiator;
