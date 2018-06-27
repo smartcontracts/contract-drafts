@@ -5,19 +5,8 @@ contract MMRStorage {
      * Storage
      */
 
-    uint256 public commitments;
+    uint256 public commitments = 1;
     bytes32[32] public slots;
-
-    
-    /*
-     * Constructor
-     */
-
-    constructor ()
-        public
-    {
-        commitments = 1;
-    }
 
 
     /*
