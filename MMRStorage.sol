@@ -22,7 +22,7 @@ contract MMRStorage {
     {
         uint256 slot = _firstSetBit(commitments);
         bytes32 root = _data;
-        if (commitments % 2 == 0) {
+        if (commitments & 1 == 0) {
             root = _merklize(root, _firstSetBit(slot));
         }
         slots[slot] = root;
