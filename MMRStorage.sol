@@ -22,7 +22,7 @@ contract MMRStorage {
     {
         uint256 slot = _firstSetBit(commitments);
         bytes32 root = _data;
-        if (_powerOfTwo(slot)) {
+        if (commitments % 2 == 0) {
             root = _merklize(root, _firstSetBit(slot));
         }
         slots[slot] = root;
@@ -63,19 +63,6 @@ contract MMRStorage {
         returns (bool)
     {
         return _x >> _index & 1 == 1;
-    }
-
-    /**
-     * @dev Determines whether some integer is a power of two.
-     * @param _x Integer to check.
-     * @return True if the integer is a power of two, false otherwise.
-     */
-    function _powerOfTwo(uint256 _x)
-        internal
-        pure
-        returns (bool)
-    {
-        return _x != 0 && (_x & (_x - 1)) == 0;
     }
 
     /**
